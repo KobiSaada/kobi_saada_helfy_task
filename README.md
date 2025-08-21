@@ -18,25 +18,6 @@ Clean dashboard with **table & endless-carousel views**, filters, stats, dialogs
 ---
 
 
----
-
-## Architecture
-
-**Backend (Express)**
-- **routes/** – Maps REST endpoints.
-- **controllers/** – HTTP orchestration (parse, delegate to service, respond).
-- **services/** – Business logic (toggle, validation, errors).
-- **repositories/** – In-memory data access (array store).
-- **models/** – Zod schemas & enums for validation.
-- **middleware/** – Validation (Zod) & error handling.
-- **utils/** – Helpers (ids, sorting/filtering).
-
-**Frontend (React + CSS)**
-- **components/** –  
-  `TaskList` (endless carousel), `TaskItem`, `TaskForm`, `TaskFilter`.
-- **services/** – `api.js` (HTTP calls).
-- **styles/** – **plain CSS** only (no frameworks).
-
 **Principles**
 - Clear separation of concerns.
 - Server-side validation (Zod).
@@ -56,7 +37,7 @@ Clean dashboard with **table & endless-carousel views**, filters, stats, dialogs
 **Frontend**
 - React, Vite
 - **Plain CSS** (no frameworks)
-- Fetch/Axios (for API calls)
+- Axios (for API calls)
 
 ---
 
@@ -79,49 +60,29 @@ npm run dev
 cd frontend
 npm install
 npm run dev    
-# If using CRA instead: npm start 
 -----------
 ```
 ### Folder Structure
 
-  ```TaskManagementApp/
-  ├─ backend/
-  │  ├─ package.json
-  │  └─ src/
-  │     ├─ server.js
-  │     ├─ app.js                # Express wiring (CORS, JSON, routes, errors)
-  │     ├─ routes/
-  │     │  └─ taskRoutes.js      # CRUD + toggle
-  │     ├─ controllers/
-  │     │  └─ taskController.js
-  │     ├─ services/
-  │     │  └─ taskService.js     # Business logic
-  │     ├─ repositories/
-  │     │  └─ taskRepo.js        # In-memory store
-  │     ├─ models/
-  │     │  └─ taskModel.js       # Zod schemas
-  │     ├─ middleware/
-  │     │  └─ validate.js        # Input validation (Zod)
-  │     └─ utils/
-  │        ├─ id.js              # IDs
-  │        └─ sortAndFilter.js   # Search/filter helpers
-  │
-  ├─ frontend/
-  │  ├─ package.json
-  │  ├─ public/
-  │  └─ src/
-  │     ├─ components/
-  │     │  ├─ TaskList.jsx       # Endless carousel
-  │     │  ├─ TaskItem.jsx
-  │     │  ├─ TaskForm.jsx
-  │     │  └─ TaskFilter.jsx
-  │     ├─ services/
-  │     │  └─ api.js
-  │     ├─ styles/
-  │     │  └─ app.css
-  │     └─ App.jsx
-  │
-  └─ README.md
+  ```
+task-manager/
+├── backend/
+│   ├── package.json
+│   ├── server.js
+│   ├── routes/
+│   └── middleware/
+├── frontend/
+│   ├── package.json
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── services/
+│   │   ├── styles/
+│   │   └── App.js
+├── .gitignore
+└── README.md
+
+ 
 ```  
 
 -----------
