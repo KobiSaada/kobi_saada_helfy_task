@@ -1,4 +1,3 @@
-// src/components/TaskList.jsx
 import React, { useEffect, useRef } from 'react';
 import TaskItem from './TaskItem';
 
@@ -7,10 +6,10 @@ export default function TaskList({ tasks, onUpdate, onDelete, onToggle }) {
   const trackRef = useRef(null);
   const animRef = useRef({ running: true });
 
-  // סדר כרונולוגי יורד
+  
   const ordered = tasks.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  // לולאה אינסופית: מכפילים פעם אחת בלבד (לא פי 3)
+  
   const looped = ordered.length ? [...ordered, ...ordered] : [];
 
   useEffect(() => {
