@@ -13,6 +13,7 @@ Clean dashboard with **table & endless-carousel views**, filters, stats, dialogs
 
 ## Screenshots
 
+<img width="1256" height="617" alt="Screen Shot 2025-08-21 at 19 21 01" src="https://github.com/user-attachments/assets/5de6a0f4-cfc6-4a22-869f-c568b329a1a0" />
 
 ---
 
