@@ -48,7 +48,7 @@ Follow these steps to **clone and run** the project locally:
 ```
 # 1) Clone
 git clone https://github.com/KobiSaada/kobi_saada_helfy_task.git
-cd TaskManagementApp
+cd task-manager
 
 # 2) Backend
 cd backend
