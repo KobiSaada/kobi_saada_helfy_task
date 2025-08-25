@@ -1,6 +1,5 @@
 const priorityValue = (p) => ({ low: 1, medium: 2, high: 3 })[p] || 0;
 
-
 exports.sortAndFilter = (tasks, query = {}) => {
   const {
     q, search,
@@ -12,13 +11,23 @@ exports.sortAndFilter = (tasks, query = {}) => {
 
   const text = (q ?? search ?? '').toString().trim().toLowerCase();
 
+  const statusToCompleted = (s) => {
+    if (!s) return undefined;
+    if (s === 'pending') return false;
+    if (s === 'completed') return true;
+    return undefined; // ערך לא מוכר → מתעלמים
+  };
+  const completedFilter = statusToCompleted(status);
+
   let items = tasks.filter((t) => {
     const byText =
       !text ||
       (t.title || '').toLowerCase().includes(text) ||
       (t.description || '').toLowerCase().includes(text);
 
-    const byStatus = !status || t.status === status;
+    const byStatus =
+      completedFilter === undefined ? true : t.completed === completedFilter;
+
     const byPriority = !priority || t.priority === priority;
 
     return byText && byStatus && byPriority;

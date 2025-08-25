@@ -63,7 +63,15 @@ function App() {
     const id = e.dataTransfer.getData('text/plain');
     if (id) await onDelete(id);
   };
-
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return tasks;
+    return tasks.filter(t =>
+      (t.title||'').toLowerCase().includes(q) ||
+      (t.description||'').toLowerCase().includes(q)
+    );
+  }, [tasks, search]);
+  
   // Search submit
   const onSearch = (e) => { e.preventDefault(); load({ q: search.trim() }); };
 
@@ -104,7 +112,7 @@ function App() {
         {err && <div className="error">{err}</div>}
         {!loading && tasks.length === 0 && <div className="empty">אין משימות זמינות</div>}
         {tasks.length > 0 && (
-          <TaskList tasks={tasks} onUpdate={onUpdate} onDelete={onDelete} onToggle={onToggle} />
+          <TaskList tasks={filtered} onUpdate={onUpdate} onDelete={onDelete} onToggle={onToggle} />
         )}
       </main>
 

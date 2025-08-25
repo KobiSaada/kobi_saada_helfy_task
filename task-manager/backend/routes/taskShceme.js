@@ -19,7 +19,6 @@ const TaskShceme = {
   },
 
   list() {
-    // מחזיר את כל המשימות; הסינון (All/Completed/Pending) נעשה ב־frontend
     return [...tasks];
   },
 

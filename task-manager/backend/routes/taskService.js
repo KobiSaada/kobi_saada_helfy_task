@@ -1,14 +1,11 @@
 const { z } = require('zod');
-const { TaskShceme } = require('./taskShceme');
-
-
+const { TaskShceme } = require('./taskShceme'); 
 const Priority = z.enum(['low','medium','high']);
 
 const TaskCreate = z.object({
   title: z.string().min(1),
   description: z.string().optional(),
   priority: Priority,
- 
 });
 
 const TaskUpdate = z.object({
@@ -25,7 +22,8 @@ const TaskService = {
 
   list() { return TaskShceme.list(); },
 
-  getByid(id) {
+  // שם יותר קריא; משאיר גם getByid כדי לא לשבור קריאות קיימות
+  getOrThrow(id) {
     const t = TaskShceme.get(id);
     if (!t) {
       const err = new Error('Task not found');
@@ -34,6 +32,9 @@ const TaskService = {
     }
     return t;
   },
+
+  // תאימות לאחור (אם יש מקומות שקוראים לשם הישן)
+  getByid(id) { return this.getOrThrow(id); },
 
   create(data) { return TaskShceme.create(data); },
 
@@ -65,6 +66,10 @@ const TaskService = {
     }
     return t;
   },
+
+  list(q){ return TaskShceme.list(q); } // ושם להפעיל sortAndFilter
+,
+  generate(count) { return TaskShceme.generate(count); },
 
   schemas: { TaskCreate, TaskUpdate, IdParams }
 };
